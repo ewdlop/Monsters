@@ -1,8 +1,18 @@
 """
 Monster Group Implementation
 
-The Monster group M is the largest sporadic simple group, with order approximately 8×10^53.
-This module provides a basic framework for working with Monster group concepts.
+Educational implementation providing conceptual understanding of the Monster group (M),
+the largest sporadic simple group with order approximately 8×10^53.
+
+NOTE: For computational work with actual Monster group elements and operations,
+use the professional mmgroup library: https://mmgroup.readthedocs.io/en/latest/
+
+This implementation focuses on:
+- Understanding Monster group properties and mathematical structure
+- Learning about sporadic groups and their characteristics  
+- Educational demonstrations and property verification
+
+This module provides a basic educational framework for working with Monster group concepts.
 """
 
 import math
@@ -125,11 +135,15 @@ class MonsterGroup:
 
 class MonsterElement:
     """
-    Represents an element of the Monster group.
+    Represents a conceptual element of the Monster group.
     
-    Note: This is a conceptual representation. Actual computation with
-    Monster group elements requires sophisticated algorithms and substantial
-    computational resources.
+    This is an educational representation for understanding Monster group elements.
+    For actual computational work with Monster group elements, use the mmgroup library
+    which provides the MM class with real group operations.
+    
+    Note: This implementation focuses on conceptual understanding rather than computation.
+    Actual computation with Monster group elements requires sophisticated algorithms
+    and substantial computational resources available in professional implementations.
     """
     
     def __init__(self, element_id: Optional[str] = None):
