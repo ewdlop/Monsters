@@ -1,0 +1,2 @@
+# Requirements for Monster Group implementation
+# No external dependencies required - uses only Python standard library
