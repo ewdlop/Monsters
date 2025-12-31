@@ -1,6 +1,8 @@
-# Monster Group Implementation
+# Monster Group & Elliptic Curve Cryptography
 
-A Python implementation providing **educational and conceptual** functionality for working with the Monster group (M), the largest sporadic simple group.
+A Python implementation providing **educational** functionality for:
+- **Monster Group**: The largest sporadic simple group and monstrous moonshine
+- **Elliptic Curve Cryptography (ECC)**: Modern cryptographic protocols using elliptic curves
 
 ## About the Monster Group
 
@@ -113,10 +115,99 @@ demonstrate_monster_group()
   - Vector space operations
   - Advanced mathematical computations
 
+## Elliptic Curve Cryptography
+
+This repository includes a comprehensive educational implementation of elliptic curve cryptography (ECC).
+
+### What is ECC?
+
+Elliptic Curve Cryptography is a modern public-key cryptography approach based on the algebraic structure of elliptic curves over finite fields. ECC provides:
+- **Smaller keys**: 256-bit ECC ≈ 3072-bit RSA security
+- **Faster operations**: More efficient than traditional RSA
+- **Modern applications**: Bitcoin, Ethereum, TLS, SSH, Signal
+
+### ECC Features
+
+- **Elliptic Curve Point Arithmetic**: Complete implementation of point addition and scalar multiplication
+- **Standard Curves**: Support for secp256k1 (Bitcoin/Ethereum) and P-256 (NIST)
+- **ECDH**: Elliptic Curve Diffie-Hellman key exchange
+- **ECDSA**: Elliptic Curve Digital Signature Algorithm
+- **Educational Focus**: Clear, readable code with comprehensive documentation
+
+### Basic ECC Usage
+
+```python
+from elliptic_curve import EllipticCurve, ECDH, ECDSA
+
+# Generate keypair
+curve = EllipticCurve('secp256k1')
+private_key = curve.generate_private_key()
+public_key = curve.get_public_key(private_key)
+
+# ECDH key exchange
+ecdh = ECDH('secp256k1')
+alice_private, alice_public = ecdh.generate_keypair()
+bob_private, bob_public = ecdh.generate_keypair()
+
+# Both compute same shared secret
+alice_shared = ecdh.compute_shared_secret(alice_private, bob_public)
+bob_shared = ecdh.compute_shared_secret(bob_private, alice_public)
+assert alice_shared == bob_shared
+
+# ECDSA signatures
+ecdsa = ECDSA('secp256k1')
+signing_key, verifying_key = ecdsa.generate_keypair()
+
+message = b"Hello, ECC!"
+signature = ecdsa.sign(message, signing_key)
+is_valid = ecdsa.verify(message, signature, verifying_key)
+print(f"Signature valid: {is_valid}")
+```
+
+### ECC Examples
+
+Run comprehensive examples:
+```bash
+python example_ecc.py
+```
+
+This demonstrates:
+- Basic elliptic curve operations
+- Key generation
+- ECDH key exchange between Alice and Bob
+- ECDSA signing and verification
+- Multiple curve support
+- Connection to monstrous moonshine
+
+### Connection: Monster Group ↔ Elliptic Curves
+
+Both modules involve elliptic curves but in different mathematical contexts:
+
+| Aspect | Monster Group (Moonshine) | Elliptic Curve Cryptography |
+|--------|--------------------------|----------------------------|
+| **Elliptic Curves** | Complex curves, modular forms | Curves over finite fields |
+| **j-Invariant** | Fourier coefficients relate to Monster dimensions | Classifies elliptic curves |
+| **Application** | Pure mathematics, representation theory | Applied cryptography |
+| **Key Result** | Monstrous moonshine conjecture | Elliptic Curve Discrete Log Problem |
+
+The j-invariant appears in both:
+- **Moonshine**: j-function expansion coefficients mysteriously encode Monster group character dimensions (196,884 = 196,883 + 1)
+- **Cryptography**: j-invariant classifies isomorphism classes of elliptic curves
+
+This deep connection shows how abstract algebra, number theory, and cryptography are intertwined!
+
 ## Running Tests
 
 ```bash
+# Test Monster group
 python test_monster_group.py
+
+# Test ECC
+python test_elliptic_curve.py
+
+# Run demonstrations
+python example.py              # Monster group demo
+python example_ecc.py          # ECC demo
 ```
 
 ## References
@@ -132,3 +223,10 @@ python test_monster_group.py
 ### Related Resources
 - [ATLAS of Finite Group Representations](http://brauer.maths.qmul.ac.uk/Atlas/)
 - [GAP System for Computational Discrete Algebra](https://www.gap-system.org/)
+
+### Elliptic Curve Cryptography
+- Koblitz, N. (1987). "Elliptic curve cryptosystems"
+- Miller, V. (1986). "Use of elliptic curves in cryptography"
+- NIST FIPS 186-4: Digital Signature Standard (DSS)
+- SEC 2: Recommended Elliptic Curve Domain Parameters
+- [SafeCurves: choosing safe curves for ECC](https://safecurves.cr.yp.to/)
