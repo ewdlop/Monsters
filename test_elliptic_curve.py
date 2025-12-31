@@ -3,7 +3,6 @@ Tests for Elliptic Curve Cryptography implementation.
 """
 
 import unittest
-import hashlib
 from elliptic_curve import (
     Point, EllipticCurve, ECDH, ECDSA, CURVES, CurveParameters
 )
